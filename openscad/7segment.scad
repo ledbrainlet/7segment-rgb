@@ -16,12 +16,12 @@ if(show_full_segment == true) {}
 
 if(show_partial_segment == true) {
 
-connectorTest(2);
+connector(2);
 
 
 }
 
-module connectorTest(branch_count) {
+module connector(branch_count) {
     difference() {
         //create all Objects for adding
         union() {    
@@ -41,10 +41,10 @@ module connectorTest(branch_count) {
         union(){
             for (i = [1:branch_count]) {
                 rotate([0, 0, i * 90]) {
-                    translate([0, -((ledconnector_length+connector_wall_thickness)/4), 0])  {  //offsets the branch
+                    translate([0, -((ledconnector_length/4)+connector_wall_thickness/8), 0])  {  //offsets the branch
                         union() {
                             //all subtract objects go here
-                            translate([0, -((connector_wall_thickness/2)), -connector_wall_thickness]) cube([ledconnector_width, ledconnector_length+connector_wall_thickness/4, connector_height], center=true); //main cut of the branch
+                            translate([0, -(connector_wall_thickness/2), -connector_wall_thickness]) cube([ledconnector_width, ledconnector_length, connector_height], center=true); //main cut of the branch
                         }
                     }
                 }
@@ -52,5 +52,3 @@ module connectorTest(branch_count) {
         }
     }
 }
-
-
