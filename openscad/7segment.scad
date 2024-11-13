@@ -4,7 +4,7 @@ show_partial_segment = true;
 
 //Bom parameters
 ledstrip_width = 10;        //set correctly
-ledconnector_length = 25;   //from led strip end to corner
+ledconnector_length = 35;   //from led strip end to corner
 ledconnector_width = 15;    //at the widest part
 
 //Part parameters
@@ -25,14 +25,16 @@ module connector(branch_count) {
     branch_rotation = 0; //to iterate for branch creation
     union() {
         for (i = [1:branch_count]) {
-            rotate([0, 0, branch_rotation]) {    
-                difference() {
-                    union() {
-                        //all add objects go here
-                        cube([ledconnector_length+(connector_wall_thickness*2), ledconnector_width+(connector_wall_thickness*2), connector_height], center=true);
-                    }
-                    union() {
-                        //all subtract objects go here
+            rotate([0, 0, branch_rotation]) {
+                translate([((ledconnector_length+connector_wall_thickness)/4), 0, 0]) {   
+                    difference() {
+                        union() {
+                            //all add objects go here
+                            cube([ledconnector_length+connector_wall_thickness, ledconnector_width+(connector_wall_thickness*2), connector_height], center=true);
+                        }
+                        union() {
+                            //all subtract objects go here
+                        }
                     }
                 }
             }
