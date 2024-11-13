@@ -27,7 +27,7 @@ module connectorTest(branch_count) {
         union() {    
             for (i = [1:branch_count]) {
                 rotate([0, 0, i * 90]) {
-                    translate([0, -((ledconnector_length+connector_wall_thickness)/4), 0])  {  //offsets the branch
+                    translate([0, -((ledconnector_length/4)+connector_wall_thickness/8), 0])  {  //offsets the branch
                         union() {
                             //all add objects go here
                             cube([ledconnector_width+(connector_wall_thickness*2), ledconnector_length+connector_wall_thickness, connector_height], center=true); //main body of one branch
@@ -44,7 +44,7 @@ module connectorTest(branch_count) {
                     translate([0, -((ledconnector_length+connector_wall_thickness)/4), 0])  {  //offsets the branch
                         union() {
                             //all subtract objects go here
-                            translate([0, -connector_wall_thickness, -connector_wall_thickness]) cube([ledconnector_width, ledconnector_length, connector_height], center=true); //main cut of the branch
+                            translate([0, -((connector_wall_thickness/2)), -connector_wall_thickness]) cube([ledconnector_width, ledconnector_length+connector_wall_thickness/4, connector_height], center=true); //main cut of the branch
                         }
                     }
                 }
